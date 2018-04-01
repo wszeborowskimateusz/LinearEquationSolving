@@ -14,6 +14,9 @@ public:
 	double* const operator [](int i);
 	double* const operator [](int i) const;
 	const Matrix operator * (const Matrix&) const;
+	const Matrix operator * (const double) const;
+	const Matrix operator + (const Matrix&) const;
+	const Matrix operator - (const Matrix&) const;
 
 protected:
 	double** matrix;

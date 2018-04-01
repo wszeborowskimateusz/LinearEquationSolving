@@ -11,7 +11,6 @@ Matrix::Matrix(int N, int M)
 	}
 }
 
-
 Matrix::Matrix(const Matrix & copy)
 {
 	this->N = copy.N;
@@ -30,7 +29,6 @@ Matrix::Matrix(const Matrix & copy)
 
 }
 
-
 Matrix::~Matrix()
 {
 	for (int i = 0; i < N; i++) {
@@ -38,7 +36,6 @@ Matrix::~Matrix()
 	}
 	delete[]matrix;
 }
-
 
 Matrix & Matrix::operator=(const Matrix & right)
 {
@@ -64,22 +61,19 @@ Matrix & Matrix::operator=(const Matrix & right)
 	return *this;
 }
 
-
 double* const  Matrix::operator[](int i)
 {
 	return matrix[i];
 }
-
 
 double * const Matrix::operator[](int i) const
 {
 	return matrix[i];
 }
 
-
 const Matrix Matrix::operator*(const Matrix & right) const
 {
-	Matrix c = right;
+	Matrix c(this->N,right.M);
 	double sum_elems;
 	if (this->M == right.N) {
 		for (int i = 0; i < this->N; ++i)
@@ -87,7 +81,7 @@ const Matrix Matrix::operator*(const Matrix & right) const
 			for (int j = 0; j < right.M; ++j)
 			{
 				sum_elems = 0;
-				for (int k = 0; k < right.M; ++k)
+				for (int k = 0; k < right.N; ++k)
 				{
 					sum_elems += (*this)[i][k] * right[k][j];
 				}
@@ -96,4 +90,33 @@ const Matrix Matrix::operator*(const Matrix & right) const
 		}
 	}
 	return c;
+}
+
+const Matrix Matrix::operator*(const double scalar) const
+{
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			matrix[i][j] *= scalar;
+		}
+	}
+	return *this;
+}
+
+const Matrix Matrix::operator+(const Matrix & right) const
+{
+	Matrix c = right;
+	if (this->N == right.N && this->M == right.M) {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				c[i][j] = (*this)[i][j] + right[i][j];
+			}
+		}
+	}
+	return c;
+}
+
+const Matrix Matrix::operator-(const Matrix & right) const
+{
+	Matrix c = right * (-1);
+	return c + (*this);
 }
