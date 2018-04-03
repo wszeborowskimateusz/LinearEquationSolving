@@ -59,9 +59,7 @@ Matrix & Matrix::generateResultsVector(double f)
 	Matrix* mat = new Matrix(N_SIZE, 1);
 
 	for (int i = 0; i < N_SIZE; i++) {
-		for (int j = 0; j < 1; j++) {
-			(*mat)[i][j] = sin(i * (f + 1));
-		}
+		(*mat)[i][0] = sin(i * (f + 1));
 	}
 
 	return *mat;
@@ -75,6 +73,16 @@ void Matrix::printMatrix()
 		}
 		std::cout << std::endl;
 	}
+}
+
+int Matrix::getN()
+{
+	return N;
+}
+
+int Matrix::getM()
+{
+	return M;
 }
 
 Matrix & Matrix::operator=(const Matrix & right)
@@ -157,6 +165,7 @@ const Matrix Matrix::operator+(const Matrix & right) const
 
 const Matrix Matrix::operator-(const Matrix & right) const
 {
-	Matrix c = right * (-1);
+	Matrix c = right;
+	c = c * (-1);
 	return c + (*this);
 }

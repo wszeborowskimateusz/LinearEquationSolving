@@ -15,6 +15,8 @@ public:
 	static Matrix& generateResultsVector(double);
 
 	void printMatrix();
+	int getN();
+	int getM();
 
 	//Operators overloading 
 	Matrix& operator = (const Matrix&);
