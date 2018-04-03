@@ -1,5 +1,6 @@
 #include "Matrix.h"
 
+#define N_SIZE 962
 
 Matrix::Matrix(int N, int M)
 {
@@ -35,6 +36,45 @@ Matrix::~Matrix()
 		delete matrix[i];
 	}
 	delete[]matrix;
+}
+
+Matrix & Matrix::generateCoefficientMatrix(double a1,double a2, double a3)
+{
+	Matrix* ex1 = new Matrix(N_SIZE, N_SIZE);
+
+	for (int i = 0; i < N_SIZE; i++) {
+		for (int j = 0; j < N_SIZE; j++) {
+			if (i == j)(*ex1)[i][j] = a1;
+			else if (j == i + 1 || j == i - 1) (*ex1)[i][j] = a2;
+			else if (j == i + 2 || j == i - 2) (*ex1)[i][j] = a3;
+			else (*ex1)[i][j] = 0;
+		}
+	}
+
+	return *ex1;
+}
+
+Matrix & Matrix::generateResultsVector(double f)
+{
+	Matrix* mat = new Matrix(N_SIZE, 1);
+
+	for (int i = 0; i < N_SIZE; i++) {
+		for (int j = 0; j < 1; j++) {
+			(*mat)[i][j] = sin(i * (f + 1));
+		}
+	}
+
+	return *mat;
+}
+
+void Matrix::printMatrix()
+{
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
 
 Matrix & Matrix::operator=(const Matrix & right)
