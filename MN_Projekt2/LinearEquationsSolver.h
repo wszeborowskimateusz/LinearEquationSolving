@@ -9,8 +9,9 @@ public:
 	LinearEquationsSolver();
 	~LinearEquationsSolver();
 
-	static Matrix& Jacobi(Matrix, Matrix, double, int);
-	static Matrix& Gauss_Seidel(Matrix, Matrix, double, int);
+	static Matrix& Jacobi(Matrix, Matrix, double);
+	static Matrix& Gauss_Seidel(Matrix, Matrix, double);
+	static Matrix& LU_Factorization(Matrix, Matrix);
 
 	static double Norm(Matrix);
 };

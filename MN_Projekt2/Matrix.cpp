@@ -1,6 +1,5 @@
 #include "Matrix.h"
 
-#define N_SIZE 962
 
 Matrix::Matrix(int N, int M)
 {
@@ -38,12 +37,12 @@ Matrix::~Matrix()
 	delete[]matrix;
 }
 
-Matrix & Matrix::generateCoefficientMatrix(double a1,double a2, double a3)
+Matrix & Matrix::generateCoefficientMatrix(double a1,double a2, double a3, int size)
 {
-	Matrix* ex1 = new Matrix(N_SIZE, N_SIZE);
+	Matrix* ex1 = new Matrix(size, size);
 
-	for (int i = 0; i < N_SIZE; i++) {
-		for (int j = 0; j < N_SIZE; j++) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 			if (i == j)(*ex1)[i][j] = a1;
 			else if (j == i + 1 || j == i - 1) (*ex1)[i][j] = a2;
 			else if (j == i + 2 || j == i - 2) (*ex1)[i][j] = a3;
@@ -54,11 +53,11 @@ Matrix & Matrix::generateCoefficientMatrix(double a1,double a2, double a3)
 	return *ex1;
 }
 
-Matrix & Matrix::generateResultsVector(double f)
+Matrix & Matrix::generateResultsVector(double f, int size)
 {
-	Matrix* mat = new Matrix(N_SIZE, 1);
+	Matrix* mat = new Matrix(size, 1);
 
-	for (int i = 0; i < N_SIZE; i++) {
+	for (int i = 0; i < size; i++) {
 		(*mat)[i][0] = sin(i * (f + 1));
 	}
 
@@ -72,6 +71,15 @@ void Matrix::printMatrix()
 			std::cout << matrix[i][j] << " ";
 		}
 		std::cout << std::endl;
+	}
+}
+
+void Matrix::populate(int with)
+{
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			matrix[i][j] = with;
+		}
 	}
 }
 

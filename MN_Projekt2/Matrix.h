@@ -11,10 +11,11 @@ public:
 	Matrix(const Matrix&);
 	~Matrix();
 
-	static Matrix& generateCoefficientMatrix(double, double, double);
-	static Matrix& generateResultsVector(double);
+	static Matrix& generateCoefficientMatrix(double a1, double a2, double a3, int size);
+	static Matrix& generateResultsVector(double f, int size);
 
 	void printMatrix();
+	void populate(int with);
 	int getN();
 	int getM();
 
