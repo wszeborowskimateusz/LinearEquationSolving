@@ -5,28 +5,96 @@
 #include <math.h>
 
 #define N_size 962
-//#define N_size 1500
+
 
 int main() {
 	////Zadanie A
-	//Matrix ex1_A = Matrix::generateCoefficientMatrix(10, -1, -1, N_size);
-	//Matrix ex1_b = Matrix::generateResultsVector(5, N_size);
+	//Matrix exA_A = Matrix::generateCoefficientMatrix(10, -1, -1, N_size);
+	//Matrix exA_b = Matrix::generateResultsVector(5, N_size);
 
 
 	////Zadanie B
-	//Matrix resultJacobi = LinearEquationsSolver::Jacobi(ex1_A, ex1_b, pow(10, -9));
-	//Matrix resultGaussSeidel = LinearEquationsSolver::Gauss_Seidel(ex1_A, ex1_b, pow(10, -9));
+	//Matrix resultJacobi = LinearEquationsSolver::Jacobi(exA_A, exA_b, pow(10, -9));
+	//Matrix resultGaussSeidel = LinearEquationsSolver::Gauss_Seidel(exA_A, exA_b, pow(10, -9));
+
 
 	//Zadanie C
-	/*Matrix ex2_A = Matrix::generateCoefficientMatrix(3, -1, -1, N_size);
-	Matrix resultJacobi2 = LinearEquationsSolver::Jacobi(ex2_A, ex1_b, pow(10, -9), N_size);
-	Matrix resultGaussSeidel2 = LinearEquationsSolver::Gauss_Seidel(ex2_A, ex1_b, pow(10, -9), N_size);*/
+	/*Matrix exC_A = Matrix::generateCoefficientMatrix(3, -1, -1, N_size);
+	Matrix resultJacobi2 = LinearEquationsSolver::Jacobi(exC_A, exA_b, pow(10, -9));
+	Matrix resultGaussSeidel2 = LinearEquationsSolver::Gauss_Seidel(exC_A, exA_b, pow(10, -9));*/
 
 	//Zadanie D
-	Matrix ex1_A = Matrix::generateCoefficientMatrix(3, -1, -1, 5);
-	Matrix ex1_b = Matrix::generateResultsVector(5, 5);
-	Matrix resultLU = LinearEquationsSolver::LU_Factorization(ex1_A, ex1_b);
-	resultLU.printMatrix();
+	//Matrix exD_A = Matrix::generateCoefficientMatrix(3, -1, -1, N_size);
+	//Matrix exD_b = Matrix::generateResultsVector(5, N_size);
+	//Matrix resultLU = LinearEquationsSolver::LU_Factorization(exD_A, exD_b);
+
+	//////Zadanie E
+	////N = 100
+	//int N = 100;
+	//std::cout << "N = " << N << std::endl;
+	//std::cout << "------------------------------------------" << std::endl;
+	//Matrix exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	//Matrix exE_b = Matrix::generateResultsVector(5, N);
+	//LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	//LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	////LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//std::cout << "------------------------------------------" << std::endl;
+
+	////N = 500
+	//N = 500;
+	//std::cout << "N = " << N << std::endl;
+	//std::cout << "------------------------------------------" << std::endl;
+	//exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	//exE_b = Matrix::generateResultsVector(5, N);
+	//LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	//LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	////LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//std::cout << "------------------------------------------" << std::endl;
+
+	////N = 1000
+	//N = 1000;
+	//std::cout << "N = " << N << std::endl;
+	//std::cout << "------------------------------------------" << std::endl;
+	//exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	//exE_b = Matrix::generateResultsVector(5, N);
+	//LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	//LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	////LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//std::cout << "------------------------------------------" << std::endl;
+
+	////N = 2000
+	//N = 2000;
+	//std::cout << "N = " << N << std::endl;
+	//std::cout << "------------------------------------------" << std::endl;
+	//exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	//exE_b = Matrix::generateResultsVector(5, N);
+	//LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	//LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	////LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//std::cout << "------------------------------------------" << std::endl;
+
+	////N = 3000
+	//N = 3000;
+	//std::cout << "N = " << N << std::endl;
+	//std::cout << "------------------------------------------" << std::endl;
+	//exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	//exE_b = Matrix::generateResultsVector(5, N);
+	//LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	//LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	////LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//std::cout << "------------------------------------------" << std::endl;
+
+	////N = 4000
+	//N = 4000;
+	//std::cout << "N = " << N << std::endl;
+	//std::cout << "------------------------------------------" << std::endl;
+	//exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	//exE_b = Matrix::generateResultsVector(5, N);
+	//LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	//LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	////LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//std::cout << "------------------------------------------" << std::endl;
+
 
 	return 0;
 }

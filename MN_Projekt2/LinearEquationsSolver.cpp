@@ -27,19 +27,19 @@ Matrix & LinearEquationsSolver::Jacobi(Matrix A, Matrix b, double residuumThresh
 
 	int numberOfIteration = 0;
 
-	x_before = x;
+
 	(*res) = A * (*x) - b;
 	while (LinearEquationsSolver::Norm(*res) > residuumThreshold) {
 		//std::cout << Norm(*res) << std::endl;
+		*x_before = *x;
 		for (int i = 0; i < N_size; i++) {
 			double sum = 0.0;
 			for (int j = 0; j < N_size; j++) {
-				if (j != i)sum += A[i][j] * (*x)[j][0];
+				if (j != i)sum += A[i][j] * (*x_before)[j][0];
 			}
 			
-			(*x_before)[i][0] = (b[i][0] - sum)/A[i][i];
+			(*x)[i][0] = (b[i][0] - sum)/A[i][i];
 		}
-		x = x_before;
 		numberOfIteration++;
 		(*res) = A * (*x) - b;
 	}
@@ -62,7 +62,9 @@ Matrix & LinearEquationsSolver::Gauss_Seidel(Matrix A, Matrix b , double residuu
 	for (int i = 0; i < N_size; i++) {
 		(*x)[i][0] = 1;
 	}
+
 	int numberOfIteration = 0;
+
 	(*res) = A * (*x) - b;
 	while (LinearEquationsSolver::Norm(*res) > residuumThreshold) {
 		//std::cout << Norm(*res) << std::endl;
@@ -86,6 +88,8 @@ Matrix & LinearEquationsSolver::Gauss_Seidel(Matrix A, Matrix b , double residuu
 
 Matrix & LinearEquationsSolver::LU_Factorization(Matrix A, Matrix b)
 {
+	clock_t begin = clock();
+
 	int N_size = b.getN();
 
 	Matrix *x = new Matrix(N_size, 1);
@@ -102,6 +106,7 @@ Matrix & LinearEquationsSolver::LU_Factorization(Matrix A, Matrix b)
 			}
 		}
 	}
+
 	y[0][0] = b[0][0]/L[0][0];
 	for (int i = 1; i < N_size; i++) {
 		double tmp_sum = 0.0;
@@ -120,7 +125,9 @@ Matrix & LinearEquationsSolver::LU_Factorization(Matrix A, Matrix b)
 		(*x)[i][0] = 1 / U[i][i] * (y[i][0] - tmp_sum);
 	}
 	
-
+	clock_t end = clock();
+	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+	std::cout << "LU factorization time is " << elapsed_secs << std::endl;
 
 	return *x;
 }
