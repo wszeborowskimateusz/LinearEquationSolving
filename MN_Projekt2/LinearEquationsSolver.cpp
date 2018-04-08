@@ -132,6 +132,69 @@ Matrix & LinearEquationsSolver::LU_Factorization(Matrix A, Matrix b)
 	return *x;
 }
 
+void LinearEquationsSolver::testMethods()
+{
+
+	//N = 100
+	int N = 100;
+	{
+		LinearEquationsSolver::testHelppingMethod(N);
+	}
+
+	//N = 500
+	N = 500;
+	{
+		LinearEquationsSolver::testHelppingMethod(N);
+	}
+
+	//N = 1000
+	N = 1000;
+	{
+		LinearEquationsSolver::testHelppingMethod(N);
+	}
+
+	//N = 2000
+	N = 2000;
+	{
+		LinearEquationsSolver::testHelppingMethod(N);
+	}
+
+	//N = 3000
+	N = 3000;
+	{
+		LinearEquationsSolver::testHelppingMethod(N);
+	}
+
+	//N = 4000
+	N = 4000;
+	{
+		LinearEquationsSolver::testHelppingMethod(N);
+	}
+}
+
+void LinearEquationsSolver::testHelppingMethod(int N)
+{
+	Matrix *tmp;
+	Matrix tmp1(N, N);
+	Matrix tm2(N, N);
+	Matrix exE_A = Matrix::generateCoefficientMatrix(10, -1, -1, N);
+	Matrix exE_b = Matrix::generateResultsVector(5, N);
+
+	std::cout << "N = " << N << std::endl;
+	std::cout << "------------------------------------------" << std::endl;
+	tmp = &LinearEquationsSolver::Jacobi(exE_A, exE_b, pow(10, -9));
+	delete tmp;
+	tmp = &LinearEquationsSolver::Gauss_Seidel(exE_A, exE_b, pow(10, -9));
+	delete tmp;
+	//tmp = LinearEquationsSolver::LU_Factorization(exE_A, exE_b);
+	//delete tmp;
+	std::cout << "------------------------------------------" << std::endl;
+
+
+}
+
+
+
 double LinearEquationsSolver::Norm(Matrix c)
 {
 	double norm = 0.0;

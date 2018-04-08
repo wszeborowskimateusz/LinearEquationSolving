@@ -32,7 +32,7 @@ Matrix::Matrix(const Matrix & copy)
 Matrix::~Matrix()
 {
 	for (int i = 0; i < N; i++) {
-		delete matrix[i];
+		delete[] matrix[i];
 	}
 	delete[]matrix;
 }
