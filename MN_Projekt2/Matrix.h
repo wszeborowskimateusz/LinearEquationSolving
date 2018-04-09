@@ -7,12 +7,14 @@ class Matrix
 {
 public:
 	Matrix(int N, int M);
+	//Coeficient matrix
+	Matrix(double a1, double a2, double a3, int size);
+	//result vector
+	Matrix(double f, int size);
 	//Copy constructor
 	Matrix(const Matrix&);
 	~Matrix();
 
-	static Matrix& generateCoefficientMatrix(double a1, double a2, double a3, int size);
-	static Matrix& generateResultsVector(double f, int size);
 
 	void printMatrix();
 	void populate(int with);

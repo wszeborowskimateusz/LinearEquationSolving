@@ -11,8 +11,30 @@ Matrix::Matrix(int N, int M)
 	}
 }
 
+Matrix::Matrix(double a1, double a2, double a3, int size)
+	:Matrix(size,size)
+{
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (i == j)matrix[i][j] = a1;
+			else if (j == i + 1 || j == i - 1) matrix[i][j] = a2;
+			else if (j == i + 2 || j == i - 2) matrix[i][j] = a3;
+			else matrix[i][j] = 0;
+		}
+	}
+}
+
+Matrix::Matrix(double f, int size)
+	:Matrix(size, 1)
+{
+	for (int i = 0; i < size; i++) {
+		matrix[i][0] = sin(i * (f + 1));
+	}
+}
+
 Matrix::Matrix(const Matrix & copy)
 {
+
 	this->N = copy.N;
 	this->M = copy.M;
 	matrix = new double*[N];
@@ -35,34 +57,9 @@ Matrix::~Matrix()
 		delete[] matrix[i];
 	}
 	delete[]matrix;
+	matrix = NULL;
 }
 
-Matrix & Matrix::generateCoefficientMatrix(double a1,double a2, double a3, int size)
-{
-	Matrix* ex1 = new Matrix(size, size);
-
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
-			if (i == j)(*ex1)[i][j] = a1;
-			else if (j == i + 1 || j == i - 1) (*ex1)[i][j] = a2;
-			else if (j == i + 2 || j == i - 2) (*ex1)[i][j] = a3;
-			else (*ex1)[i][j] = 0;
-		}
-	}
-
-	return *ex1;
-}
-
-Matrix & Matrix::generateResultsVector(double f, int size)
-{
-	Matrix* mat = new Matrix(size, 1);
-
-	for (int i = 0; i < size; i++) {
-		(*mat)[i][0] = sin(i * (f + 1));
-	}
-
-	return *mat;
-}
 
 void Matrix::printMatrix()
 {
